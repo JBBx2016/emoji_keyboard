@@ -28,7 +28,7 @@ class EmojiKeyboard extends StatelessWidget {
   final Color color;
 
   final contentKey = UniqueKey();
-  final List<GlobalKey> categoryKeyStore = List(8);
+  final List<GlobalKey?> categoryKeyStore = List.generate(8, (i) => null);
 
   /// Creates a emoji keyboard widget.
   ///
@@ -47,10 +47,10 @@ class EmojiKeyboard extends StatelessWidget {
   ///
   /// If [floatingHeader] is true then keyboard scrolls offscreen header as the user scrolls down the list.
   EmojiKeyboard({
-    Key key,
+    Key? key,
     this.column = 8,
     this.height = 290.0,
-    @required this.onEmojiSelected,
+    required this.onEmojiSelected,
     this.floatingHeader = false,
     this.color = Colors.white,
     this.categoryIcons = const CategoryIcons(),
@@ -60,7 +60,7 @@ class EmojiKeyboard extends StatelessWidget {
   /// Calback function when user press one of categorie in keyboard header
   /// and scroll emojis grid to the postion of that category by it's [index].
   void onCategoryClick(int index) {
-    Scrollable.ensureVisible(categoryKeyStore[index].currentContext);
+    Scrollable.ensureVisible(categoryKeyStore[index]!.currentContext!);
   }
 
   /// set the [key] of emoji category header by it's [index] in grid.
@@ -140,7 +140,7 @@ class EmojiKeyboard extends StatelessWidget {
                               crossAxisCount: column,
                             ),
                             delegate: SliverChildListDelegate.fixed(
-                              snapshot.data[index ~/ 2].map((Emoji emoji) {
+                              snapshot.data![index ~/ 2].map((Emoji emoji) {
                                 return CupertinoButton(
                                   key: ValueKey('${emoji.text}'),
                                   pressedOpacity: 0.4,
@@ -177,10 +177,10 @@ class EmojiKeyboard extends StatelessWidget {
 
 class _EmojiKeyboardHeader implements SliverPersistentHeaderDelegate {
   const _EmojiKeyboardHeader({
-    this.minExtent,
-    @required this.maxExtent,
-    @required this.categoryIcons,
-    @required this.onClick,
+    required this.minExtent,
+    required this.maxExtent,
+    required this.categoryIcons,
+    required this.onClick,
     this.color = Colors.white,
   });
 
@@ -226,10 +226,10 @@ class _EmojiKeyboardHeader implements SliverPersistentHeaderDelegate {
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
 
   @override
-  FloatingHeaderSnapConfiguration get snapConfiguration => null;
+  FloatingHeaderSnapConfiguration? get snapConfiguration => null;
 
   @override
-  OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
+  OverScrollHeaderStretchConfiguration? get stretchConfiguration => null;
 
   @override
   dynamic noSuchMethod(Invocation invocation) => null;
