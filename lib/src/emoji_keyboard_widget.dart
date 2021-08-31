@@ -72,9 +72,7 @@ class EmojiKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: color,
-      height: height ??
-          (MediaQuery.of(context).size.width / column) * 5 +
-              (_categoryHeaderHeight + _categoryTitleHeight),
+      height: height,
       child: NestedScrollView(
         key: PageStorageKey<Type>(NestedScrollView),
         //floatHeaderSlivers: true,
