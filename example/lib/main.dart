@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji_keyboard/flutter_emoji_keyboard.dart';
 
@@ -46,8 +45,8 @@ class MainPage extends StatelessWidget {
             ),
           ),
           FloatingActionButton(
-            child: const Icon(Icons.clear),
             onPressed: clearText,
+            child: const Icon(Icons.clear),
           ),
           EmojiKeyboard(
             onEmojiSelected: onEmojiSelected,
