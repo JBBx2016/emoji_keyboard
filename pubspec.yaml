@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  device_info: ^2.0.2
+  device_info_plus:
 
 dev_dependencies:
   pedantic: ^1.11.1
