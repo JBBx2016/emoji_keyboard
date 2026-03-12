@@ -51,7 +51,7 @@ bool _versionCompatibility(
 
   final ends = limitRange[0];
 
-  if (ver.compareTo(ends.key) < 0 || ver.compareTo(ends.value) > 0) {
+  if (ver.compareTo(ends.key) < 0) {
     return false;
   }
 
