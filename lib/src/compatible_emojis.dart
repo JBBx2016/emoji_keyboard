@@ -38,15 +38,15 @@ void _emojiDispatcher(Emoji emoji) {
 typedef Compatible = bool Function(Emoji emoji, String? systemVersion);
 
 Future<bool> _getCompatibleEmojis(String? systemVersion) async {
-  final _deviceInfoPlugin = DeviceInfoPlugin();
+  final deviceInfoPlugin = DeviceInfoPlugin();
 
   Compatible isCompatible;
 
   if (isAndroid()) {
-    systemVersion ??= (await _deviceInfoPlugin.androidInfo).version.release;
+    systemVersion ??= (await deviceInfoPlugin.androidInfo).version.release;
     isCompatible = Emoji.isAndroidCompatible;
   } else if (isIOS()) {
-    systemVersion ??= (await _deviceInfoPlugin.iosInfo).systemVersion;
+    systemVersion ??= (await deviceInfoPlugin.iosInfo).systemVersion;
     isCompatible = Emoji.isIOSCompatible;
   } else {
     isCompatible = (_, __) => true;
@@ -55,11 +55,11 @@ Future<bool> _getCompatibleEmojis(String? systemVersion) async {
   for (final emoji in emojiList) {
     if (isCompatible(emoji, systemVersion)) {
       _emojiDispatcher(emoji);
-      emoji.diversityChildren.forEach((childEmoji) {
+      for (final childEmoji in emoji.diversityChildren) {
         if (isCompatible(childEmoji, systemVersion)) {
           _emojiDispatcher(childEmoji);
         }
-      });
+      }
     }
   }
   return true;

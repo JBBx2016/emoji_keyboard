@@ -46,7 +46,7 @@ class EmojiKeyboard extends StatelessWidget {
   ///
   /// If [floatingHeader] is true then keyboard scrolls offscreen header as the user scrolls down the list.
   EmojiKeyboard({
-    Key? key,
+    super.key,
     this.column = 8,
     this.height = 290.0,
     required this.onEmojiSelected,
@@ -54,7 +54,7 @@ class EmojiKeyboard extends StatelessWidget {
     this.color = Colors.white,
     this.categoryIcons = const CategoryIcons(),
     this.categoryTitles = const CategoryTitles(),
-  }) : super(key: key);
+  });
 
   /// Calback function when user press one of categorie in keyboard header
   /// and scroll emojis grid to the postion of that category by it's [index].
@@ -139,12 +139,12 @@ class EmojiKeyboard extends StatelessWidget {
                             delegate: SliverChildListDelegate.fixed(
                               snapshot.data![index ~/ 2].map((Emoji emoji) {
                                 return CupertinoButton(
-                                  key: ValueKey('${emoji.text}'),
+                                  key: ValueKey(emoji.text),
                                   pressedOpacity: 0.4,
                                   padding: EdgeInsets.all(0),
                                   child: Center(
                                     child: Text(
-                                      '${emoji.text}',
+                                      emoji.text,
                                       style: TextStyle(
                                         fontSize: 26,
                                       ),
