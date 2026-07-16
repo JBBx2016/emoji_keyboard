@@ -15,6 +15,8 @@ void main() {
 }
 
 class MainPage extends StatelessWidget {
+  MainPage({super.key});
+
   final TextEditingController controller = TextEditingController();
 
   void onEmojiSelected(Emoji emoji) {

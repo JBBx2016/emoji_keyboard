@@ -9,10 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  device_info_plus: ^11.0.0
+  device_info_plus: '>=11.0.0'
 
 dev_dependencies:
-  pedantic: ^1.11.1
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 

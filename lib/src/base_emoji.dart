@@ -46,7 +46,7 @@ class Emoji {
 bool _versionCompatibility(
     List<MapEntry<String, String>> limitRange, String ver) {
   if (ver.split('.')[0].length < 2) {
-    ver = '0' + ver;
+    ver = '0$ver';
   }
 
   final ends = limitRange[0];
